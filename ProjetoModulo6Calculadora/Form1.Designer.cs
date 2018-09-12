@@ -163,6 +163,7 @@
             this.btnPonto.TabIndex = 10;
             this.btnPonto.Text = ".";
             this.btnPonto.UseVisualStyleBackColor = true;
+            this.btnPonto.Click += new System.EventHandler(this.btnPonto_Click);
             // 
             // btnSoma
             // 
@@ -288,6 +289,7 @@
             // 
             // txtDisplay
             // 
+            this.txtDisplay.Enabled = false;
             this.txtDisplay.Font = new System.Drawing.Font("Copperplate Gothic Bold", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDisplay.Location = new System.Drawing.Point(12, 12);
             this.txtDisplay.MaxLength = 10;

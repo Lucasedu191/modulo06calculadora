@@ -16,9 +16,16 @@ namespace ProjetoModulo6Calculadora
         {
             InitializeComponent();
         }
+
         private Double numero1;
         private Double numero2;
         private String operacao;
+        private double resultado;
+
+
+        private Boolean PressionouIgual; 
+            
+            
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -30,13 +37,20 @@ namespace ProjetoModulo6Calculadora
             txtDisplay.Clear();
             numero1 = 0;
             numero2 = 0;
+            resultado = 0;
             operacao = string.Empty;
+            PressionouIgual = false;
         }
 
 
 
         private void AdicionarCaracterNumerico(string caracter)
         {
+            if(PressionouIgual == true)
+            {
+                txtDisplay.Clear();
+                PressionouIgual = false;
+            }
             if (!txtDisplay.Text.Trim().Equals("0"))
             {
                 txtDisplay.Text = txtDisplay.Text + caracter;
@@ -50,10 +64,46 @@ namespace ProjetoModulo6Calculadora
         {
             if (!txtDisplay.Text.Trim().Equals(string.Empty))
             {
-                numero1 = Convert.ToDouble(txtDisplay.Text.Trim());
+                if (txtDisplay.Text.Trim().Contains("."))
+                {
+                    numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace("." , ","));
+                }
+                else
+                {
+                    numero1 = Convert.ToDouble(txtDisplay.Text.Trim());
+                }
+ 
                 operacao = caracter;
                 txtDisplay.Clear();
+                
+
             }
+        }
+
+        private void Calcular()
+        {
+            switch(operacao)
+            {
+               
+                case "/":
+                    if (numero2 == 0)
+                    {
+                        MessageBox.Show("Divisão por zero!");
+                        break;
+                    }
+                        resultado = numero1 / numero2;
+                    break;
+                case "*":
+                    resultado = numero1 * numero2;
+                    break;
+                case "+":
+                    resultado = numero1 + numero2;
+                    break;
+                case "-":
+                    resultado = numero1 - numero2;
+                    break;
+            }
+            txtDisplay.Text = resultado.ToString().Replace(",",".") ;
         }
         private void btn0_Click(object sender, EventArgs e)
         {
@@ -132,9 +182,27 @@ namespace ProjetoModulo6Calculadora
         {
             if(!txtDisplay.Text.Trim().Equals(string.Empty))
             {
-                numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
+                if (txtDisplay.Text.Trim().Contains("."))
+                {
+                    numero2 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".", ","));
+                }
+                else
+                {
+                    numero2 = Convert.ToDouble(txtDisplay.Text.Trim());
+                }
+
+                Calcular();
+                PressionouIgual = true;
 
             }
+        }
+
+        private void btnPonto_Click(object sender, EventArgs e)
+        {
+            if (txtDisplay.Text.Trim().Equals(string.Empty)) txtDisplay.Text = "0.";
+            if (txtDisplay.Text.Trim().Contains(".")) return;
+            txtDisplay.Text = txtDisplay.Text +  ".";
+     
         }
     }
 }
