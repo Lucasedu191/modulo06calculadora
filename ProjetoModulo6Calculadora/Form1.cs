@@ -75,8 +75,11 @@ namespace ProjetoModulo6Calculadora
  
                 operacao = caracter;
                 txtDisplay.Clear();
-                
 
+            }
+            else
+            {
+                MessageBox.Show("Você de inserir um valor");
             }
         }
 
@@ -102,8 +105,15 @@ namespace ProjetoModulo6Calculadora
                 case "-":
                     resultado = numero1 - numero2;
                     break;
+                case "^":
+                    resultado = CalcularPotencia();
+                    break;
             }
             txtDisplay.Text = resultado.ToString().Replace(",",".") ;
+        }
+        private Double CalcularPotencia()
+        {
+             return  Math.Pow(numero1, numero2);
         }
         private void btn0_Click(object sender, EventArgs e)
         {
@@ -180,7 +190,14 @@ namespace ProjetoModulo6Calculadora
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
-            if(!txtDisplay.Text.Trim().Equals(string.Empty))
+
+            if (PressionouIgual)
+            {
+                txtDisplay.Clear();
+                PressionouIgual = false;
+                return;
+            }
+            if (!txtDisplay.Text.Trim().Equals(string.Empty))
             {
                 if (txtDisplay.Text.Trim().Contains("."))
                 {
@@ -199,10 +216,70 @@ namespace ProjetoModulo6Calculadora
 
         private void btnPonto_Click(object sender, EventArgs e)
         {
+            if (PressionouIgual)
+            {
+                txtDisplay.Text = "0.";
+                PressionouIgual = false;
+                return;
+            }
             if (txtDisplay.Text.Trim().Equals(string.Empty)) txtDisplay.Text = "0.";
             if (txtDisplay.Text.Trim().Contains(".")) return;
             txtDisplay.Text = txtDisplay.Text +  ".";
+         
      
+        }
+
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+        }
+
+        private void btnCE_Click(object sender, EventArgs e)
+        {
+            if (operacao.Equals(string.Empty)|| PressionouIgual)
+            {
+                LimparCampos();
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        private void btnMaisMenos_Click(object sender, EventArgs e)
+        {
+            if(!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                txtDisplay.Text = (Convert.ToDouble(txtDisplay.Text.Trim().Replace(".", ",")) * (-1)).ToString().Replace(",", ".");
+            }
+        }
+
+        private void btnRemoveUltimoDigito_Click(object sender, EventArgs e)
+        {
+            int tam = txtDisplay.Text.Trim().Length;
+            string texto = txtDisplay.Text.Trim();
+            txtDisplay.Clear();
+            for (int i = 0; i< tam -1;i++)
+            {
+                txtDisplay.Text = txtDisplay.Text + texto[i];
+            }
+        }
+
+        private void btnElevaAoQuadrado_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+               numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".",","));
+                numero2 = 2;
+                var result = CalcularPotencia();
+                txtDisplay.Text = result.ToString().Replace(",", ".");
+                PressionouIgual = true;
+            }
+        }
+
+        private void btnPotenciacao_Click(object sender, EventArgs e)
+        {
+            AdicionarCaractereOperacao("^");
         }
     }
 }

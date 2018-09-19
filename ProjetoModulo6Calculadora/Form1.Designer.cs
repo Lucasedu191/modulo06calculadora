@@ -241,6 +241,7 @@
             this.btnPotenciacao.TabIndex = 15;
             this.btnPotenciacao.Text = "^";
             this.btnPotenciacao.UseVisualStyleBackColor = true;
+            this.btnPotenciacao.Click += new System.EventHandler(this.btnPotenciacao_Click);
             // 
             // btnElevaAoQuadrado
             // 
@@ -250,6 +251,7 @@
             this.btnElevaAoQuadrado.TabIndex = 23;
             this.btnElevaAoQuadrado.Text = "^2";
             this.btnElevaAoQuadrado.UseVisualStyleBackColor = true;
+            this.btnElevaAoQuadrado.Click += new System.EventHandler(this.btnElevaAoQuadrado_Click);
             // 
             // btnRemoveUltimoDigito
             // 
@@ -259,6 +261,7 @@
             this.btnRemoveUltimoDigito.TabIndex = 22;
             this.btnRemoveUltimoDigito.Text = "<-";
             this.btnRemoveUltimoDigito.UseVisualStyleBackColor = true;
+            this.btnRemoveUltimoDigito.Click += new System.EventHandler(this.btnRemoveUltimoDigito_Click);
             // 
             // btnMaisMenos
             // 
@@ -268,6 +271,7 @@
             this.btnMaisMenos.TabIndex = 21;
             this.btnMaisMenos.Text = "+-";
             this.btnMaisMenos.UseVisualStyleBackColor = true;
+            this.btnMaisMenos.Click += new System.EventHandler(this.btnMaisMenos_Click);
             // 
             // btnCE
             // 
@@ -277,6 +281,7 @@
             this.btnCE.TabIndex = 20;
             this.btnCE.Text = "CE";
             this.btnCE.UseVisualStyleBackColor = true;
+            this.btnCE.Click += new System.EventHandler(this.btnCE_Click);
             // 
             // btnC
             // 
@@ -286,6 +291,7 @@
             this.btnC.TabIndex = 19;
             this.btnC.Text = "C";
             this.btnC.UseVisualStyleBackColor = true;
+            this.btnC.Click += new System.EventHandler(this.btnC_Click);
             // 
             // txtDisplay
             // 
