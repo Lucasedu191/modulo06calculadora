@@ -223,6 +223,7 @@
             this.btn1porX.TabIndex = 17;
             this.btn1porX.Text = "1/x";
             this.btn1porX.UseVisualStyleBackColor = true;
+            this.btn1porX.Click += new System.EventHandler(this.btn1porX_Click);
             // 
             // btnRaizQuadrada
             // 
@@ -232,6 +233,7 @@
             this.btnRaizQuadrada.TabIndex = 16;
             this.btnRaizQuadrada.Text = "sqrt";
             this.btnRaizQuadrada.UseVisualStyleBackColor = true;
+            this.btnRaizQuadrada.Click += new System.EventHandler(this.btnRaizQuadrada_Click);
             // 
             // btnPotenciacao
             // 
@@ -335,7 +337,9 @@
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

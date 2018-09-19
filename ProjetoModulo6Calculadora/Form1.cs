@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoModulo6Calculadora
@@ -51,14 +44,8 @@ namespace ProjetoModulo6Calculadora
                 txtDisplay.Clear();
                 PressionouIgual = false;
             }
-            if (!txtDisplay.Text.Trim().Equals("0"))
-            {
-                txtDisplay.Text = txtDisplay.Text + caracter;
-            }
-            else
-            {
-                txtDisplay.Text = txtDisplay.Text + caracter;
-            }
+            if (!txtDisplay.Text.Trim().Equals("0")) txtDisplay.Text = txtDisplay.Text + caracter;
+            else txtDisplay.Text = txtDisplay.Text + caracter;
         }
         private void AdicionarCaractereOperacao(string caracter)
         {
@@ -271,8 +258,8 @@ namespace ProjetoModulo6Calculadora
             {
                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".",","));
                 numero2 = 2;
-                var result = CalcularPotencia();
-                txtDisplay.Text = result.ToString().Replace(",", ".");
+                resultado = CalcularPotencia();
+                txtDisplay.Text = resultado.ToString().Replace(",", ".");
                 PressionouIgual = true;
             }
         }
@@ -280,6 +267,34 @@ namespace ProjetoModulo6Calculadora
         private void btnPotenciacao_Click(object sender, EventArgs e)
         {
             AdicionarCaractereOperacao("^");
+        }
+
+        private void btnRaizQuadrada_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".", ","));
+                resultado = Math.Sqrt(numero1);
+                txtDisplay.Text = resultado.ToString().Replace(".", ",");
+                PressionouIgual = true;
+            }   
+        }
+
+        private void btn1porX_Click(object sender, EventArgs e)
+        {
+            if (!txtDisplay.Text.Trim().Equals(String.Empty))
+            {
+                numero1 = Convert.ToDouble(txtDisplay.Text.Trim().Replace(".", ","));
+
+                if (numero1 == 0)
+                {
+                    MessageBox.Show("Erro divisão por zero!");
+                    return;
+                }
+                resultado = 1 / numero1;
+                txtDisplay.Text = resultado.ToString().Replace(".", ",");
+                PressionouIgual = true;
+            }
         }
     }
 }
